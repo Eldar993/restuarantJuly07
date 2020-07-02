@@ -15,8 +15,8 @@ For correct usage of application you need:
   where DATABASE_URL - JDBC url to database(is optional,if not specified,will be used default value)\
   DATABASE_PASSWORD - paswword\
   DATABASE_USER - username\
-4)For running use "java -DDATABASE_PASSWORD=<> -DDATABASE_USER=<> -jar <Absolute path to jar>"
-For building and running please enter following comand in terminal \:
+4)For running use "java -DDATABASE_PASSWORD=<> -DDATABASE_USER=<> -jar 'Absolute path to jar'"
+
 In my case: java -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres -jar  D:\java\myProject\target\demo-0.0.1-SNAPSHOT.jar
 
 
