@@ -1,0 +1,60 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Navbar</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}">
+</head>
+<body>
+<header>
+
+
+
+
+       <a th:href="@{/main}">
+           <img th:src="@{/images/logo.jpg}" src="../static/images/logo.jpg" alt="logo" width="100px" height="100px"
+                class="ml-1">
+
+       </a>
+    <nav>
+        <ul class="nav__links">
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/print_all}">Users</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/dishes}">Dishes</a></li>
+            <li sec:authorize="hasAnyRole('ROLE_COOK', 'ROLE_ADMIN')"><a th:href="@{/dishTypes}">Dish Types</a></li>
+            <li sec:authorize="hasAnyRole('ROLE_COOK', 'ROLE_ADMIN')"><a th:href="@{/ingredients}">Ingredients</a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin/orders}">Orders</a></li>
+            <li sec:authorize="hasRole('ROLE_COOK')"><a th:href="@{/cook/orders}">Orders</a></li>
+            <li sec:authorize="hasRole('ROLE_USER')"><a th:href="@{/user/orders}">Orders</a></li>
+
+
+        </ul>
+    </nav>
+
+    <h4 sec:authorize="isAuthenticated()">
+        <span class="text-info">Signed in as</span>
+        <span class="login text-light" sec:authentication="name" id="login">SomeLogin</span>
+    </h4>
+    <!--
+        <a class="btn btn-success" sec:authorize="hasRole('ROLE_USER')" &lt;!&ndash;th:href="@{/users/{id}(id = user.id)}"&ndash;&gt;>Manage account</a>
+    -->
+    <a class="btn btn-primary" sec:authorize="isAnonymous()" th:href="@{/signIn}">Sign In</a>
+    <a class="btn btn-warning" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+
+
+    <form th:action="@{/basket}" th:method="GET">
+        <button type="submit" class="btn btn-light " value="Basket" sec:authorize="hasRole('ROLE_USER')">
+            <i class="fas fa-shopping-basket mr-2"></i>Basket</span>
+        </button>
+    </form>
+</header>
+
+</body>
+</html>

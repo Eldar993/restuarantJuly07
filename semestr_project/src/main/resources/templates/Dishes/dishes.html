@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="commonElements :: my-head(${'Dishes'})">
+    <meta charset="UTF-8">
+    <title>Dishes</title>
+
+</head>
+<body>
+
+<div th:insert="header :: header"></div>
+<div id="dishes" sec:authorize="hasRole('ROLE_USER')">
+    <tr th:each="dish: ${dishList}" th:object="${dish}">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <form th:action="@{/order}" method="post">
+                    <h5 class="card-title" th:text="*{name}">Napoleon</h5>
+                    <p class="card-text" th:text="*{price + '$'}">Dish price.</p>
+                    <input type="text" name="count" value="1" placeholder="Enter dish count"/>
+                    <input class="btn btn-primary" type="text" name="dish-id" hidden="hidden" th:value="${dish.id}"/>
+                    <form th:action="@{/order}" th:method="POST">
+                        <button class="btn btn-primary mt-3">Add to cart</button>
+                    </form>
+                    <!--<input class="btn btn-primary" type="submit" value="Add to cart">-->
+                </form>
+            </div>
+        </div>
+    </tr>
+</div>
+<table id="Dishes" class="table mx-auto" style="width: 1300px;" sec:authorize="hasAnyRole('ROLE_COOK', 'ROLE_ADMIN')">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Dish Type</th>
+        <th scope="col">Price</th>
+        <th scope="col">Name</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Ingredients</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish: ${dishList}" th:object="${dish}">
+        <td th:text="*{id}">Id</td>
+        <td th:text="*{dishType.title}">Dish Type</td>
+        <td th:text="*{price}">Price</td>
+        <td th:text="*{name}">Name</td>
+        <td th:text="*{weight}">Weight</td>
+
+        <td>
+            <span th:each="entry : *{ingredients}">
+                <span th:text="${entry.key.title}" th:if="${entry.value}"></span><span> </span>
+            </span>
+        </td>
+
+
+        <td sec:authorize="hasAnyRole('ROLE_COOK', 'ROLE_ADMIN')">
+            <form th:action="@{/dish/{id}(id=*{id})}" th:method="GET">
+                <button value="Update" class="btn btn-info">Update</button>
+            </form>
+            <form th:action="@{/dish/{id}(id=*{id})}" th:method="DELETE">
+                <button value="delete" class="btn btn-danger mt-3" name="removeRow">Delete</button>
+            </form>
+        </td>
+        <td sec:authorize="hasRole('ROLE_USER')">
+            <form th:action="@{/basket}" th:method="GET">
+                <button value="add to cart">Add to cart</button>
+            </form>
+        </td>
+    </tr>
+
+    </tbody>
+
+
+</table>
+<div class="text-center">
+    <a sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_COOK')" th:href="@{/dish}" class="btn btn-outline-primary btn-lg">
+        Create dish
+    </a>
+</div>
+</body>
+</html>

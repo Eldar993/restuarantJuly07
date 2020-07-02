@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commonElements :: my-head('Registration')">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sign In</title>
+
+</head>
+<div th:insert="header :: header"></div>
+<body>
+<div class="container-fluid">
+    <div class="container">
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+                <form role="form" method="post" action="/registration" th:object="${userInfo}">
+                    <fieldset>
+                        <h2 class="text-uppercase pull-center">Registration</h2>
+                        <small th:if="${generalError}" th:text="${generalError}"
+                               class="text-danger">
+                            General error
+                        </small>
+                        <div class="form-group mt-3">
+
+                            <label for="username" class="h4">Username:</label>
+
+                            <input type="text" name="name" id="username" class="form-control input-lg"
+                                   placeholder="Username" th:field="*{name}">
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">
+                                Name error
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="h4">Password:</label>
+                            <input type="password" name="password" id="password" class="form-control input-lg"
+                                   placeholder="Password">
+                            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">
+                                Password error
+                            </span>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-lg btn-primary" value="Register">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col-md-2">
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
+
+

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Common error</title>
+</head>
+<body>
+<h1>Common error</h1>
+<table th:each="attr : ${errorAttributes}">
+    <tr>
+        <td th:text="${attr.key}"></td>
+        <td th:text="${attr.value}"></td>
+    </tr>
+</table>
+</body>
+</html>

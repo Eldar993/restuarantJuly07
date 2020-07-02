@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/commonElements :: my-head('Payment')">
+    <meta charset="UTF-8">
+    <title>Payment</title>
+</head>
+<body>
+<div th:insert="/header :: header"></div>
+<form th:action="@{/user/orders/pay}" th:method="POST">
+    <div class="form-group col-2">
+        <label for="payment">Payment amount</label>
+        <input type="text" id="payment" size="15" name="payment" required class="form-control"
+               placeholder="Enter an amount to pay">
+    </div>
+    <div th:if="${errorMsg}" th:text="${errorMsg}"
+         class="text-error">
+        Some error
+    </div>
+    <span>You need to pay: </span><span th:text="${totalPrice} + '$' "></span>
+    <br>
+    <button type="submit" class="btn btn-primary">Pay</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="commonElements :: my-head('Basket')">
+    <meta charset="UTF-8">
+    <title>Basket</title>
+
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+
+</head>
+<body>
+<div th:insert="header :: header"></div>
+
+<div class="container">
+    <div class="card shopping-cart" style="width: 1000px;">
+        <div class="card-header bg-dark text-light">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            Shopping cart
+
+            <div class="clearfix"></div>
+        </div>
+        <div th:each="dish: ${order.dishes}" th:object="${dish}">
+            <div class="card-body">
+                <!-- PRODUCT -->
+                <div class="row">
+                    <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                        <h4 class="product-name" th:text="*{name}"><strong>Product Name</strong></h4>
+                    </div>
+                    <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                        <div class="col-3 col-sm-3 col-md-6 text-md-right" th:with="var=(${dish.count * dish.price})">
+                            <h6><strong th:text="${var} + '$'">25.00 <span class="text-muted">$</span></strong></h6>
+                            <small th:text="'Count: ' + ${dish.count}"></small>
+                        </div>
+                        <div class="col-10 col-sm-10 col-md-10">
+
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 text-right">
+
+                            <form th:action="@{/user/orders/{order-id}/dish/{dish-id}(order-id=${order.id},dish-id=*{id})}"
+                                  th:method="DELETE">
+                                <input type="submit" value="Delete" class="btn btn-danger mb-3" style="position: relative;
+                                bottom: 30px;">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="pull-right">
+                <form th:action="@{/user/orders/checkout}" th:method="POST">
+                    <input type="submit" value="Checkout" class="btn btn-success pull-right"/>
+                </form>
+
+                <div class="pull-right">
+                    Total price: <b th:text="${order.totalPrice} + '$'">50.00€</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
