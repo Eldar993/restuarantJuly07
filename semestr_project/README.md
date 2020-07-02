@@ -8,7 +8,14 @@ manner. Customer can choose one or more dishes to place an order which will land
 order details in the cart before checking out. In the end, the customer gets order confirmation. Once the order is
 placed it is entered in the database and retrieved in pretty much real-time.
 # Installation
-For correct usage of application you need to create a pgAdmin database and install maven on your PC.\
+For correct usage of application you need:
+1)Create a Postgres database\
+2)Install maven on your PC.\
+3)Build via "mvn clean package -DDATABASE_URL=<> -DDATABASE_PASSWORD=<> -DDATABASE_USER=<>"
+  where DATABASE_URL - JDBC url to database(is optional,if not specified,will be used default value)\
+  DATABASE_PASSWORD - paswword\
+  DATABASE_USER - username\
+4)For running use "java -DDATABASE_PASSWORD=<> -DDATABASE_USER=<> -jar <Absolute path to jar>"
 For building and running please enter following comand in terminal \:
 In my case: java -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres -jar  D:\java\myProject\target\demo-0.0.1-SNAPSHOT.jar
 
@@ -42,7 +49,7 @@ After finishing of the application all users must to Log out from their accounts
 ## Build with
 [Java](https://docs.oracle.com/en/java/) - Backend language\
 [Springboot](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/) (MVC, Security, Data JPA)\
-[Thymeleaf](https://www.thymeleaf.org/)- A server-side Java template engine\
+[Thymeleaf](https://www.thymeleaf.org/) - A server-side Java template engine\
 [Maven](https://maven.apache.org/) - Dependency Management\
 [HTML, CSS](https://devdocs.io/html/) - Basis of building Web pages and Web Applications\
 [PostgreSQL](https://www.postgresql.org/docs/) - Database Management
