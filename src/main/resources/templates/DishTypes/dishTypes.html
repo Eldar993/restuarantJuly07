@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+
+<head th:replace="commonElements :: my-head(${'Dish types'})">
+    <meta charset="UTF-8">
+    <title>Dish types</title>
+
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<table class="table mx-auto" style="width: 1300px;">
+    <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+
+    <tr th:each="dishType: ${dishTypeList}" th:object="${dishType}">
+        <td th:text="*{id}">Id</td>
+        <td th:text="*{title}">Title</td>
+        <td>
+            <form th:action="@{/dishType/{id}(id=*{id})}" th:method="GET">
+                <button value="Update" class="btn btn-info">Update</button>
+            </form>
+            <form th:action="@{/dishType/{id}(id=*{id})}" th:method="DELETE">
+                <button value="delete" name="removeRow" class="btn btn-danger mt-3">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<div class="text-center">
+    <a th:href="@{/dishType}" class="btn btn-outline-primary btn-lg">Create dish type</a>
+</div>
+
+
+<footer class="footer">
+    <div class="container mt-5">
+        <span class="text-muted">Designed for Ordering System .</span>
+    </div>
+</footer>
+
+</body>
+</html>

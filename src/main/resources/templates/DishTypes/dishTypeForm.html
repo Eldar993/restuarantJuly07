@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commonElements :: my-head(${'Dish Type form'})">
+    <meta charset="UTF-8">
+    <title>Dish Type form</title>
+
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<div th:if="${dishType == null}">UNKNOWN ID IN PATH</div>
+<div th:if="${dishType != null}">
+    <form action="/dishTypes"
+          th:object="${dishType}"
+          th:action="@{${actionType == 'create' ? '/dishType' : ('/dishType/' + dishType.id)}}"
+          th:method="${actionType == 'create' ?  'POST' : 'PUT'}"
+          class="forms"
+    >
+        <fieldset>
+            <legend th:text="${actionType == 'create'} ? 'Create new dish type' : 'Update dish type'"></legend>
+            <p th:if="${actionType != 'create'}">Id: [[*{id}]]</p>
+            <div class="col-sm-5 dt-form">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="title" size="15" maxlength="20" required th:field="*{title}">
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</span>
+
+            </div>
+
+<br>
+
+                <input class="btn btn-primary mt-5" type="submit" value="Create" th:value="${actionType} == 'create' ? 'Create' : 'Update'">
+
+
+        </fieldset>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="commonElements :: my-head(${'Users'})">
+    <meta charset="UTF-8">
+    <title>All users</title>
+
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<table class="table mx-auto" style="width: 1300px;">
+    <!--/*@thymesVar id="usersList" type="java.util.List<com.example.restaurant.entity.User>"*/-->
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Role</th>
+        <th scope="col">Actions
+<!--            <form th:action="@{/delete_all}" th:method="DELETE">-->
+<!--                <input type="submit" value="Delete All" class="btn btn-danger mt-3">-->
+<!--            </form>-->
+        </th>
+    </tr>
+    </thead>
+
+
+    <tr th:each="user: ${usersList}" th:object="${userInfo}">
+        <td th:text="${user.id}"/>
+        <td th:text="${user.name}"/>
+        <td th:text="${user.userRole}"/>
+        <td><!--/*@thymesVar id="userInfo" type="com.example.restaurant.entity.User"*/-->
+            <form th:object="${userInfo}" th:action="@{/users/{id}(id = ${user.id})}" th:method="GET">
+                <input type="submit" value="Update" class="btn btn-info">
+            </form>
+            <!--/*@thymesVar id="userInfo" type="com.example.restaurant.entity.User"*/-->
+            <form th:object="${userInfo}" th:action="@{/users/{id}(id=${user.id})}" th:method="DELETE">
+                <input type="submit" value="Delete" class="btn btn-danger mt-3">
+            </form>
+        </td>
+
+    </tr>
+</table>
+</body>
+</html>

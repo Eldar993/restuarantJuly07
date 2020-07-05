@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="commonElements :: my-head(${title})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+<div th:insert="header :: header"></div>
+
+<!--<div th:object="${userInfo}" th:if="${userInfo}">
+    <h1 class="title" th:classAppend="${id % 2 == 0} ? 'even'">
+        Id: <span th:text="*{id}"> Some id</span> Name: [[*{name}]] Password: [[*{password}]] User Role: [[*{userRole}]]
+    </h1>
+</div>-->
+
+<div th:unless="${userInfo}">
+    <h1>Unknown user</h1>
+</div>
+<form th:object="${userInfo}" th:action="@{/users/{id}(id = *{id})}" method="POST" class="form-group u-form"
+      modelAtribute="update">
+    <div class="col-sm-5" id="u-form">
+        <p class="registration">Name<br>
+
+            <input th:field="*{name}" class="form-control" type="text" name="name" size="15" maxlength="20" required>
+        </p>
+
+        <p class="registration" sec:authorize="hasRole('ROLE_USER')">Password<br>
+            <input th:field="*{password}" class="form-control" type="password" name="password" size="15"
+                   required="required"></p>
+
+        <!--    <div class="form-check">-->
+        <!--        <p class="registration">User Role<br>-->
+        <!--        <li th:each="userRole : ${roles}">-->
+        <!--            <input class="form-check-input" type="radio" th:value="${userRole}" th:text="${userRole}" />-->
+
+        <!--        </li>-->
+        <!--    </div>-->
+
+        <label for="userRole" sec:authorize="hasRole('ROLE_ADMIN')">User role</label>
+        <select id="userRole" name="userRole" class="form-control form-control-sm">
+            <option th:each="role : ${roles}" th:text="${role}" th:selected="${role == userInfo.userRole}">Option</option>
+        </select>
+        <br>
+
+        <input class="btn btn-info" type="submit" value="Update">
+    </div>
+
+</form>
+</body>
+</html>

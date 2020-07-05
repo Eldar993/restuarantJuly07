@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commonElements :: my-head(${'Ingredient form'})">
+    <meta charset="UTF-8">
+    <title th:text="${actionType} == 'create' ? 'Create Ingredient' : 'Update Ingredient'">Create Ingredient</title>
+
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<div th:if="${ingredient == null}">UNKNOWN ID IN PATH</div>
+<div th:if="${ingredient != null}">
+    <form action="/ingredients"
+          th:object="${ingredient}"
+          th:action="@{${actionType == 'create' ? '/ingredient' : ('/ingredient/' + ingredient.id)}}"
+          th:method="${actionType == 'create' ?  'POST' : 'PUT'}"
+          class="form-group i-form"
+    >
+        <fieldset class="col-sm-7" id="i-form">
+            <legend th:text="${actionType == 'create'} ? 'Create new Ingredient' : 'Update ingredient'"></legend>
+<!--
+            <div th:if="${errorMessage}" th:text="${errorMessage}">General error</div>
+-->
+            <p th:if="${actionType != 'create'}">Id: [[*{id}]]</p>
+            <div>
+                <label for="title">Title</label>
+                <input class="form-control"  type="text" id="title" name="title" size="15" maxlength="20" required th:field="*{title}">
+                <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</span>
+
+            </div>
+            <div>
+                <label for="calories">Calories</label>
+                <input class="form-control"  type="text" id="calories" name="calories" size="15" required th:field="*{calories}">
+                <!--/*@thymesVar id="calories_hasError" type="java.lang.Boolean"*/-->
+                <div th:if="${calories_hasError}">This field has error</div>
+            </div>
+
+
+            <input class="btn btn-primary mt-4" type="submit" value="Create" th:value="${actionType} == 'create' ? 'Create' : 'Update'">
+        </fieldset>
+
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New user registration</title>
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+</head>
+<body>
+<div th:insert="/header :: header"></div>
+<form action="/login" method="POST" modelAtribute="login">
+    <fieldset id="UserRegistration">
+        <legend id="RegistrationTitle">New User registration</legend>
+        <p class="registration">Name<br>
+            <input class="InputRegistration" type="text" name="name" size="15" maxlength="20" required></p>
+
+        <p class="registration">Password<br>
+            <input class="InputRegistration" type="password" name="password" size="15" required="required"></p>
+
+        <br>
+        <input id="registerButton" type="submit" value="Register">
+    </fieldset>
+
+</form>
+
+</body>
+</html>

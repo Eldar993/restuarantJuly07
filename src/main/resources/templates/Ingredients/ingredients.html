@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commonElements :: my-head(${'Ingredients'})">
+    <meta charset="UTF-8">
+    <title>Ingredient</title>
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<table id="Ingredient" class="table mx-auto" style="width: 1300px;">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Calories</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+
+    <tr th:each="ingredient: ${allIngredients}" th:object="${ingredient}">
+        <td th:text="*{id}">Id</td>
+        <td th:text="*{title}">Title</td>
+        <td th:text="*{calories}">Calories</td>
+        <td>
+            <form th:action="@{/ingredient/{id}(id=*{id})}" th:method="GET">
+                <button value="Update" class="btn btn-info">Update</button>
+            </form>
+            <form th:action="@{/ingredient/{id}(id=*{id})}" th:method="DELETE">
+                <button value="delete" name="removeRow" class="btn btn-danger mt-3">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<div class="text-center">
+
+    <a th:href="@{/ingredient}" class="btn btn-outline-primary btn-lg text-center">Create Ingredient</a>
+
+</div>
+
+</body>
+</html>
