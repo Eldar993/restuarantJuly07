@@ -1,26 +1,56 @@
 # Restaurant online ordering system
 
 
-## Description
+## 1 Description
 The online ordering system simplifies the ordering process for both the customer and
 the restaurant. The system presents an interactive menu with all available options in an easy to use
 manner. Customer can choose one or more dishes to place an order which will land in the basket. Customers can view all the
-order details in the cart before checking out. In the end, the customer gets order confirmation. Once the order is
-placed it is entered in the database and retrieved in pretty much real-time.
-# Installation
-For correct usage of application you need:\
-1)Create a Postgres database\
-2)Install maven on your PC.\
-3)Build via `mvn clean package -DDATABASE_URL=<> -DDATABASE_PASSWORD=<> -DDATABASE_USER=<>`\
-  where DATABASE_URL - JDBC url to database(is optional,if not specified,will be used default value)\
-  DATABASE_PASSWORD - paswword\
-  DATABASE_USER - username\
-4)For running use `java -DDATABASE_PASSWORD=<> -DDATABASE_USER=<> -jar 'Absolute path to jar`
+order details in the cart before checking out. In the end, the customer gets order confirmation. When the order is
+confirmed, it will insert into the database. Information about all orders may be retrieved in pretty much real-time.
 
-In my case: `java -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres -jar  D:\java\myProject\target\demo-0.0.1-SNAPSHOT.jar`
+
+
+## 2 Installation
+
+### 2.1 Requirements
+  * jdk 11 (or above)
+  * Maven
+  * PostgreSQL (9+)
+  * Git (optional)
+
+### 2.2 Compiling and running
+
+For correct usage of application you need:
+   1. Create a Postgres database. Enter into psql and execute:
+      ```
+      CREATE DATABASE restaurant
+      ```
+      
+   2. Download project sources. The simplest way is cloning a repo with command      
+      ```
+      git clone https://gitlab.mff.cuni.cz/teaching/nprg045/kliber/rp-guliev.git
+      ```      
+      
+   3. Navigate to a directory with project (with pom.xlm) and execute
+      ```
+      mvn clean package -DDATABASE_USER=<your database login> -DDATABASE_PASSWORD=<your database password> -DDATABASE_URL=<database url>
+      
+      ```
+      Required variables:
+         - `DATABASE_USER` - your database login
+         - `DATABASE_PASSWORD` - your database password
+         - `DATABASE_URL` - is optional variable. If doesn't present, will be used a default value `jdbc:postgresql://localhost:5432/Restaurant`. Url must start with 'jdbc:postgresql://<url to your database>:<port>/<database name>
+   
+   4. After the previos command has been exceuted, your will see *.jar file into ./target directory.
+      Navigate to ./target directory and execute command to start the application
+      ```
+      java -DDATABASE_USER=<your database login> -DDATABASE_PASSWORD=<your database password> -DDATABASE_URL=<database url> -jar ./demo-0.0.1-SNAPSHOT.jar
+      ```
+      The application will be allowed on http://localhost:8888/
 
 
 ## Using an application
+
 For the first time it is required to create an admin in your pgAdmin database.
 All new users have to register and after that sign in their accounts\.
 
