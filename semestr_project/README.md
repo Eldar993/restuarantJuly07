@@ -11,13 +11,13 @@ placed it is entered in the database and retrieved in pretty much real-time.
 For correct usage of application you need:
 1)Create a Postgres database\
 2)Install maven on your PC.\
-3)Build via "mvn clean package -DDATABASE_URL=<> -DDATABASE_PASSWORD=<> -DDATABASE_USER=<>"
+3)Build via `mvn clean package -DDATABASE_URL=<> -DDATABASE_PASSWORD=<> -DDATABASE_USER=<>`\
   where DATABASE_URL - JDBC url to database(is optional,if not specified,will be used default value)\
   DATABASE_PASSWORD - paswword\
   DATABASE_USER - username\
-4)For running use "java -DDATABASE_PASSWORD=<> -DDATABASE_USER=<> -jar 'Absolute path to jar'"
+4)For running use `java -DDATABASE_PASSWORD=<> -DDATABASE_USER=<> -jar 'Absolute path to jar`
 
-In my case: java -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres -jar  D:\java\myProject\target\demo-0.0.1-SNAPSHOT.jar
+In my case: `java -DDATABASE_PASSWORD=123 -DDATABASE_USER=postgres -jar  D:\java\myProject\target\demo-0.0.1-SNAPSHOT.jar`
 
 
 ## Using an application
