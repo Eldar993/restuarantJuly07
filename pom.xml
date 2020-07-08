@@ -82,7 +82,23 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <configuration>
+                    <jdkVersion>${java.version}</jdkVersion>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>target/demo-0.0.1-SNAPSHOT.jar</include>
+                    </includes>
+                    <processTypes>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -DDATABASE_URL=$JDBC_DATABASE_URL -DDATABASE_USER=$JDBC_DATABASE_USERNAME -DDATABASE_PASSWORD=$JDBC_DATABASE_PASSWORD -jar target/demo-0.0.1-SNAPSHOT.jar</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
         </plugins>
+
     </build>
 
 </project>
