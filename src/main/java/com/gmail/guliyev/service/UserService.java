@@ -23,16 +23,23 @@ public class UserService {
 
     }
 
-    public boolean create(User user) {
+    public boolean create(User user,UserRoles userRole) {
 
         Optional<User> oldUser = userRepository.findByName(user.getName());
         if (oldUser.isPresent()) {
             return false;
         }
-        user.setUserRole(UserRoles.USER);
+        user.setUserRole(userRole);
         userRepository.saveAndFlush(user);
         return true;
     }
+
+    public boolean create(User user) {
+        return create(user,UserRoles.USER);
+
+    }
+
+
 
     public Optional<User> findUser(Long id) {
         Optional<User> userInfo = userRepository.findUserById(id);
@@ -117,5 +124,12 @@ public class UserService {
 
     public Optional<User> findByName(String username) {
         return userRepository.findByName(username);
+    }
+    public User findByUserRole(UserRoles userRole){
+        return userRepository.findByUserRole(userRole);
+    }
+
+    public boolean existsByUserRole(UserRoles userRole){
+        return userRepository.existsByUserRole(userRole);
     }
 }

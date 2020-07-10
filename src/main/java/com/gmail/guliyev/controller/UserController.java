@@ -66,12 +66,14 @@ public class UserController {
                 User entity = UserService.toEntity(userDto);
                 final boolean result = userService.create(entity);
                 if (result) {
-                    RedirectView redirectView = new RedirectView("/");
-                    mav.setView(redirectView);
+                    mav.setViewName("message");
+                    mav.addObject("message", "Registration successful");
+                    /*RedirectView redirectView = new RedirectView("/");
+                    mav.setView(redirectView);*/
                 } else {
                     mav.setViewName("registration");
                     mav.addObject("userInfo", userDto);
-                    mav.addObject("generalError", "Something way wrong:(");
+                    mav.addObject("generalError", "Invalid user name");
                 }
             } catch (Exception e) {
                 mav.setViewName("registration");
