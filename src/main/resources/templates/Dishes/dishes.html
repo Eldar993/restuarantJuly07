@@ -18,12 +18,13 @@
                     <input type="text" name="count" value="1" placeholder="Enter dish count"/>
                     <input class="btn btn-primary" type="text" name="dish-id" hidden="hidden" th:value="${dish.id}"/>
                     <form th:action="@{/order}" th:method="POST">
-                        <button class="btn btn-primary mt-3">Add to cart</button>
+                        <button class="btn btn-primary mt-3" onclick="getElementById('message').innerHTML = 'Dish was added to basket'">Add to cart</button>
                     </form>
-                    <!--<input class="btn btn-primary" type="submit" value="Add to cart">-->
+
                 </form>
             </div>
         </div>
+        <h2 id="message"></h2>
     </tr>
 </div>
 <table id="Dishes" class="table mx-auto" style="width: 1300px;" sec:authorize="hasAnyRole('ROLE_COOK', 'ROLE_ADMIN')">
