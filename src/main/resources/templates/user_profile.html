@@ -18,6 +18,9 @@
 <div th:unless="${userInfo}">
     <h1>Unknown user</h1>
 </div>
+<div th:if="${updatedResult}">
+    <h1>User information was updated: [[ ${updatedResult} ]] </h1>
+</div>
 <form th:object="${userInfo}" th:action="@{/users/{id}(id = *{id})}" method="POST" class="form-group u-form"
       modelAtribute="update">
     <div class="col-sm-5" id="u-form">
