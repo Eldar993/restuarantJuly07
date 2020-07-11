@@ -1,4 +1,4 @@
-package com.gmail.guliyev.component;
+package com.gmail.guliyev.configuraion;
 
 
 import com.gmail.guliyev.entity.User;

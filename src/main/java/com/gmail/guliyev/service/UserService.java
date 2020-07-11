@@ -4,8 +4,7 @@ import com.gmail.guliyev.dto.UserDto;
 import com.gmail.guliyev.entity.User;
 import com.gmail.guliyev.enums.UserRoles;
 import com.gmail.guliyev.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -16,14 +15,14 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserService {
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
     public static final int NAME_LENGTH = 5;
+
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -41,7 +40,7 @@ public class UserService {
         if (oldUser.isPresent()) {
             return false;
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setUserRole(userRole);
         user.setPassword(encodedPassword);
         userRepository.saveAndFlush(user);
