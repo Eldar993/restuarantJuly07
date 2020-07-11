@@ -1,7 +1,7 @@
-package com.example.restaurant.repository;
+package com.gmail.guliyev.repository;
 
-import com.example.restaurant.entity.User;
-import com.example.restaurant.enums.UserRoles;
+import com.gmail.guliyev.entity.User;
+import com.gmail.guliyev.enums.UserRoles;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

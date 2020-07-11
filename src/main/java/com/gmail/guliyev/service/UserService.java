@@ -1,9 +1,9 @@
-package com.example.restaurant.service;
+package com.gmail.guliyev.service;
 
-import com.example.restaurant.dto.UserDto;
-import com.example.restaurant.entity.User;
-import com.example.restaurant.enums.UserRoles;
-import com.example.restaurant.repository.UserRepository;
+import com.gmail.guliyev.dto.UserDto;
+import com.gmail.guliyev.entity.User;
+import com.gmail.guliyev.enums.UserRoles;
+import com.gmail.guliyev.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -72,13 +72,15 @@ public class UserService {
         return userInfo;
     }
 
-    private static final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String ALPHA_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public String generateRandomString(int count) {
         StringBuilder builder = new StringBuilder();
-        while (count-- != 0) {
-            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
-            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+
+        while (count > 0) {
+            int character = (int) (Math.random() * ALPHA_STRING.length());
+            builder.append(ALPHA_STRING.charAt(character));
+            count--;
         }
         return builder.toString();
     }
