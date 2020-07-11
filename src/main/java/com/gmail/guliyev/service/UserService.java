@@ -1,9 +1,11 @@
-package com.gmail.guliyev.service;
+package com.example.restaurant.service;
 
-import com.gmail.guliyev.dto.UserDto;
-import com.gmail.guliyev.entity.User;
-import com.gmail.guliyev.enums.UserRoles;
-import com.gmail.guliyev.repository.UserRepository;
+import com.example.restaurant.dto.UserDto;
+import com.example.restaurant.entity.User;
+import com.example.restaurant.enums.UserRoles;
+import com.example.restaurant.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,7 +16,8 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserService {
-
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     public static final int NAME_LENGTH = 5;
     private final UserRepository userRepository;
 
@@ -23,22 +26,23 @@ public class UserService {
 
     }
 
-    public boolean create(User user,UserRoles userRole) {
+    public boolean create(User user, UserRoles userRole) {
 
         Optional<User> oldUser = userRepository.findByName(user.getName());
         if (oldUser.isPresent()) {
             return false;
         }
+        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setUserRole(userRole);
+        user.setPassword(encodedPassword);
         userRepository.saveAndFlush(user);
         return true;
     }
 
     public boolean create(User user) {
-        return create(user,UserRoles.USER);
+        return create(user, UserRoles.USER);
 
     }
-
 
 
     public Optional<User> findUser(Long id) {
@@ -125,11 +129,12 @@ public class UserService {
     public Optional<User> findByName(String username) {
         return userRepository.findByName(username);
     }
-    public User findByUserRole(UserRoles userRole){
+
+    public User findByUserRole(UserRoles userRole) {
         return userRepository.findByUserRole(userRole);
     }
 
-    public boolean existsByUserRole(UserRoles userRole){
+    public boolean existsByUserRole(UserRoles userRole) {
         return userRepository.existsByUserRole(userRole);
     }
 }
