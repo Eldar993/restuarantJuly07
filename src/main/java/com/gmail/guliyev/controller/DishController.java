@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -38,12 +39,16 @@ public class DishController {
     private DeleteService deleteService;
 
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
-    public ModelAndView printAll(ModelAndView mav) {
+    public ModelAndView showAll(ModelAndView mav,
+                                @RequestParam(name = "added-dish-id", required = false) Long addedDishId,
+                                @RequestParam(name = "added-count", required = false) Long addedCount) {
 
         mav.setViewName("Dishes/dishes");
         List<DishDetailDto> dishList = dishService.toDetailDto(dishService.findAll());
 
         mav.addObject("dishList", dishList);
+        mav.addObject("addedDishId", addedDishId);
+        mav.addObject("addedCount", addedCount);
 
         return mav;
 

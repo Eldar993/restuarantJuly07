@@ -55,7 +55,7 @@ public class OrderController {
         try {
             orderService.addDish(username, dishId, count);
             RedirectView redirectView = new RedirectView();
-            redirectView.setUrl("/dishes"); //redirect to dish page
+            redirectView.setUrl("/dishes?added-dish-id=" + dishId + "&added-count=" + count); //redirect to dish page
             mav.setView(redirectView);
         } catch (Exception e) {
             log.error("Order not created: {}", e.getMessage(), e);
