@@ -26,6 +26,15 @@ public class UserService {
 
     }
 
+    /**
+     * <p>The method for creating user with specified role.
+     * </p>
+     * @param user     The user that we want create
+     * @param userRole user's role
+     * @return <code>true</code> if the user was created
+     * *                  <code>false</code> otherwise.
+     * @since 1.0
+     */
     public boolean create(User user, UserRoles userRole) {
 
         Optional<User> oldUser = userRepository.findByName(user.getName());
@@ -38,13 +47,26 @@ public class UserService {
         userRepository.saveAndFlush(user);
         return true;
     }
-
+    /**
+     * <p>The method for creating user with role USER.
+     * </p>
+     * @param user     The user that we want create
+     * @return <code>true</code> if the user was created
+     * *                  <code>false</code> otherwise.
+     * @since 1.0
+     */
     public boolean create(User user) {
         return create(user, UserRoles.USER);
 
     }
 
-
+    /**
+     * <p>The method for finding user by id
+     * </p>
+     * @param id     The user's id that we want to find
+     * @return <code>true</code> if the user was created
+     * *                  <code>false</code> otherwise.
+     */
     public Optional<User> findUser(Long id) {
         Optional<User> userInfo = userRepository.findUserById(id);
         return userInfo;
@@ -85,9 +107,6 @@ public class UserService {
         return users;
     }
 
-    public void deleteUsers() {
-        userRepository.deleteAll();
-    }
 
     public void delete(Long id) {
         userRepository.deleteById(id);
