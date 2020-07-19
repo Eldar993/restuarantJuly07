@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="commonElements :: my-head('Order Error')">
+    <meta charset="UTF-8">
+    <title>Order Error</title>
+</head>
+<body>
+<div th:insert="header :: header"></div>
+<h1 class="text-center text-danger mt-5">You already have unpaid orders!</h1>
+<i class="far fa-times-circle fa-10x cross-icon"  style="color: #d9534f"></i>
+</body>
+</html>

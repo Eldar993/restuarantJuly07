@@ -60,7 +60,7 @@ public class OrderController {
         } catch (Exception e) {
             log.error("Order not created: {}", e.getMessage(), e);
             RedirectView redirectView = new RedirectView();
-            redirectView.setUrl("/error"); //todo: should be redirected to error page
+            redirectView.setUrl("/order-error"); //todo: should be redirected to error page
             mav.setView(redirectView);
         }
 
