@@ -265,5 +265,9 @@ margin: 10px auto;
 }
 .cross-icon{
     justify-content: center;
-    margin: 30px 45%;
+    margin: 30px 35%;
+}
+.orderError{
+    color: #d9534f;
+    width: 600px;
 }

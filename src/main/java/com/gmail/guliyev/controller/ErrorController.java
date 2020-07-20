@@ -16,9 +16,13 @@ public class ErrorController {
     @RequestMapping(value = "/order-error")
     @ResponseBody
     public ModelAndView orderError() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("errors/orderError");
-        return modelAndView;
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("message");
+        mav.addObject("orderError",true);
+        mav.addObject("message","You already have unpaid orders!");
+        mav.addObject("solveText","Please pay all your previous orders");
+        return mav;
     }
 
 }
+
