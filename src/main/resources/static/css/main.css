@@ -263,7 +263,7 @@ margin: 10px auto;
     left: 35px;
     border-radius: 50%;
 }
-.cross-icon{
+.cross-icon .fa-check-circle-o{
     justify-content: center;
     margin: 30px 35%;
 }
