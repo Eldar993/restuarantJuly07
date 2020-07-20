@@ -90,10 +90,10 @@
                     <jdkVersion>${java.version}</jdkVersion>
                     <includeTarget>false</includeTarget>
                     <includes>
-                        <include>target/demo-0.0.1-SNAPSHOT.jar</include>
+                        <include>target/restaurant-1.0.0.RELEASE.jar</include>
                     </includes>
                     <processTypes>
-                        <web>java $JAVA_OPTS -Dserver.port=$PORT -DDATABASE_URL=$JDBC_DATABASE_URL -DDATABASE_USER=$JDBC_DATABASE_USERNAME -DDATABASE_PASSWORD=$JDBC_DATABASE_PASSWORD -jar target/demo-0.0.1-SNAPSHOT.jar</web>
+                        <web>java $JAVA_OPTS -Dserver.port=$PORT -DDATABASE_URL=$JDBC_DATABASE_URL -DDATABASE_USER=$JDBC_DATABASE_USERNAME -DDATABASE_PASSWORD=$JDBC_DATABASE_PASSWORD -jar target/restaurant-1.0.0.RELEASE.jar</web>
                     </processTypes>
                 </configuration>
             </plugin>
