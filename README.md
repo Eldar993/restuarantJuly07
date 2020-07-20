@@ -41,11 +41,12 @@ For correct usage of application you need:
          - `DATABASE_PASSWORD` - your database password
          - `DATABASE_URL` - is optional variable. If doesn't present, will be used a default value `jdbc:postgresql://localhost:5432/Restaurant`. Url must start with 'jdbc:postgresql://<url to your database>:<port>/<database name>
    
-   4. After the previos command has been exceuted, your will see *.jar file into ./target directory.
-      Navigate to ./target directory and execute command to start the application
-      ```
-      java -DDATABASE_USER=<your database login> -DDATABASE_PASSWORD=<your database password> -DDATABASE_URL=<database url> -jar ./demo-0.0.1-SNAPSHOT.jar
-      ```
+   4. After the previous command has been executed, your will see *.jar file into ./target directory.
+      User should make a .env file based on .example.env and run the build.sh script where:
+          - `DATABASE_USER` - your database login
+          - `DATABASE_PASSWORD` - your database password
+          - `DATABASE_URL` - is url to your database.
+          
       The application will be allowed on http://localhost:8888/
 
 
