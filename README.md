@@ -43,9 +43,9 @@ For correct usage of application you need:
    
    4. After the previous command has been executed, your will see *.jar file into ./target directory.
       User should make a .env file based on .example.env and run the build.sh script where:
-          - `DATABASE_USER` - your database login
-          - `DATABASE_PASSWORD` - your database password
-          - `DATABASE_URL` - is url to your database.
+         - `DATABASE_USER` - your database login
+         - `DATABASE_PASSWORD` - your database password
+         - `DATABASE_URL` - is url to your database.
           
       The application will be allowed on http://localhost:8888/
 
