@@ -20,7 +20,7 @@ public class ErrorController {
         mav.setViewName("message");
         mav.addObject("orderError",true);
         mav.addObject("message","You already have unpaid orders!");
-        mav.addObject("solveText","Please pay all your previous orders");
+        mav.addObject("solutionText","Please pay all your previous orders");
         return mav;
     }
 
