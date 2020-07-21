@@ -5,7 +5,7 @@
     <title>Payment</title>
 </head>
 <body>
-<div th:insert="/header :: header"></div>
+<div th:insert="header :: header"></div>
 <form th:action="@{/user/orders/pay}" th:method="POST">
     <div class="form-group col-2">
         <label for="payment">Payment amount</label>

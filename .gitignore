@@ -4,6 +4,7 @@ target/
 !**/src/main/**
 !**/src/test/**
 .env
+config/applicaton.properties
 ### STS ###
 .apt_generated
 .classpath
