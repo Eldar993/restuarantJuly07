@@ -22,8 +22,8 @@
        <a th:href="@{/main}">
            <img th:src="@{/images/logo.jpg}" src="../static/images/logo.jpg" alt="logo" width="100px" height="100px"
                 class="ml-1">
-
        </a>
+
     <nav>
         <ul class="nav__links">
             <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/print_all}">Users</a></li>
