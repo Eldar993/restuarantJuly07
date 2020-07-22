@@ -1,6 +1,5 @@
 # Restaurant online ordering system
-
-
+Available at https://restaurant-web-application.herokuapp.com/
 ## 1 Description
 The online ordering system simplifies the ordering process for both the customer and
 the restaurant. The system presents an interactive menu with all available options in an easy to use
@@ -41,15 +40,15 @@ For correct usage of application you need:
          - `DATABASE_PASSWORD` - your database password
          - `DATABASE_URL` - is optional variable. If doesn't present, will be used a default value `jdbc:postgresql://localhost:5432/Restaurant`. Url must start with `jdbc:postgresql://<url to your database>:<port>/<database name>`
    
-   4.1(Run using command line)\
+   4.1 Run using command line\
     After the previous command has been executed, your will see *.jar file in ./target directory.\
     Navigate to ./target directory and execute command to start the application\
          
           ```
-          java -DDATABASE_USER=<your database login> -DDATABASE_PASSWORD=<your database password> -DDATABASE_URL=<database url> -jar ./demo-0.0.1-SNAPSHOT.jar
+          java -DDATABASE_USER=<your database login> -DDATABASE_PASSWORD=<your database password> -DDATABASE_URL=<database url> -jar ./restaurant-1.0.0.RELEASE.jar
           ```
     
-   4.2 (Run using script)\
+   4.2 Run using script\
       If you are afraid that the credentials will be visible in the command line, but you are not afraid to store them in a regular file, then create an application.properties file(based on example.properties) in the config folder and run either the build.sh script or the commands separately,that are written in the script.\
       Where properties are:\
          - `spring.datasource.username` - your database login\
