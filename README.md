@@ -52,7 +52,7 @@ For correct usage of application you need:
    4.2 (Run using script)\
       If you are afraid that the credentials will be visible in the command line, but you are not afraid to store them in a regular file, then create an application.properties file(based on example.properties) in the config folder and run either the build.sh script or the commands separately,that are written in the script.\
       Where properties are:\
-         - `spring.datasource.username` - your database login
+         - `spring.datasource.username` - your database login\
          - `spring.datasource.password` - your database password\
          - `spring.datasource.url` - is url to your database.
        
