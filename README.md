@@ -42,10 +42,10 @@ For correct usage of application you need:
          - `DATABASE_URL` - is optional variable. If doesn't present, will be used a default value `jdbc:postgresql://localhost:5432/Restaurant`. Url must start with 'jdbc:postgresql://<url to your database>:<port>/<database name>
    
    4. After the previous command has been executed, your will see *.jar file into ./target directory.
-      User should make a .env file based on .example.env and run the build.sh script where:
-         - `DATABASE_USER` - your database login
-         - `DATABASE_PASSWORD` - your database password
-         - `DATABASE_URL` - is url to your database.
+      User should fill all properties based on config/example.properties file  and run the build.sh script where:
+         - `spring.datasource.username` - your database login
+         - `spring.datasource.password` - your database password
+         - `spring.datasource.url` - is url to your database.
           
       The application will be allowed on http://localhost:8888/
 
