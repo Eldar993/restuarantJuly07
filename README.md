@@ -39,15 +39,24 @@ For correct usage of application you need:
       Required variables:
          - `DATABASE_USER` - your database login
          - `DATABASE_PASSWORD` - your database password
-         - `DATABASE_URL` - is optional variable. If doesn't present, will be used a default value `jdbc:postgresql://localhost:5432/Restaurant`. Url must start with 'jdbc:postgresql://<url to your database>:<port>/<database name>
+         - `DATABASE_URL` - is optional variable. If doesn't present, will be used a default value `jdbc:postgresql://localhost:5432/Restaurant`. Url must start with `jdbc:postgresql://<url to your database>:<port>/<database name>`
    
-   4. After the previous command has been executed, your will see *.jar file into ./target directory.
-      User should fill all properties based on config/example.properties file  and run the build.sh script where:
+   4.1(Run using command line)\
+    After the previous command has been executed, your will see *.jar file in ./target directory.\
+    Navigate to ./target directory and execute command to start the application\
+         
+          ```
+          java -DDATABASE_USER=<your database login> -DDATABASE_PASSWORD=<your database password> -DDATABASE_URL=<database url> -jar ./demo-0.0.1-SNAPSHOT.jar
+          ```
+    
+   4.2 (Run using script)\
+      If you are afraid that the credentials will be visible in the command line, but you are not afraid to store them in a regular file, then create an application.properties file(based on example.properties) in the config folder and run either the build.sh script or the commands separately,that are written in the script.\
+      Where properties are:\
          - `spring.datasource.username` - your database login
-         - `spring.datasource.password` - your database password
+         - `spring.datasource.password` - your database password\
          - `spring.datasource.url` - is url to your database.
-          
-      The application will be allowed on http://localhost:8888/
+       
+   By default the application will be allowed on http://localhost:8888/. If you want to run the application on another port, you should provide `-Dserver.port=\<desired port\>` variable in the run command. Where \<desired port\> - a HTTP port that will be used by the application.
 
 
 ## Using an application
